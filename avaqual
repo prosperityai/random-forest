@@ -1,0 +1,23 @@
+# Create CSV file and write header
+with open("avocado_data.csv", mode="w", newline="") as csvfile:
+    fieldnames = ["BlueLight", "YellowLight", "RedLight", "GreenLight", "Ripeness"]
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+    writer.writeheader()
+
+    # Generate random data for each ripeness level
+    for level, count in zip(ripeness_levels, sample_counts):
+        for _ in range(count):
+            # Adjust the range of values based on your requirements
+            blue_light = random.randint(100, 200)
+            yellow_light = random.randint(50, 150)
+            red_light = random.randint(0, 100)
+            green_light = random.randint(150, 255)
+
+            writer.writerow({
+                "BlueLight": blue_light,
+                "YellowLight": yellow_light,
+                "RedLight": red_light,
+                "GreenLight": green_light,
+                "Ripeness": level
+            })
